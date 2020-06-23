@@ -36,7 +36,7 @@ export default tempData = [
     ]
   },
   {
-    name: "Vitó é nabo",
+    name: "Pessoal",
     color: "#8fa619",
     todos: [
       {
