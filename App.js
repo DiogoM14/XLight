@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, FlatList, Modal } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, FlatList, Modal, Image } from 'react-native';
 import {AntDesign} from '@expo/vector-icons';
 import colors from './Colors';
 import tempData from './tempData';
@@ -45,18 +45,8 @@ export default class App extends React.Component {
       </Modal>
       <View style={{flexDirection: "row"}}>
         <View style={styles.divider} />
-        <Text style={styles.title}>
-          X<Text style={{fontWeight: "300", color: colors.blue, fontSize: 38}}>Light</Text>
-        </Text>
+          <Image source={require('./assets/logo.png')} style={{width: 200, height: 150}} />
         <View style={styles.divider} />
-      </View>
-
-      <View style={{marginVertical: 48}}>
-        <TouchableOpacity style={styles.addList} onPress={() => this.toggleAddTodoModal()}>
-          <AntDesign name="plus" size={16} color={colors.blue} />
-        </TouchableOpacity>
-
-        <Text style={styles.add}>Adicionar Lista</Text>
       </View>
 
       <View style={{height: 275, paddingLeft: 32}}>
@@ -67,7 +57,15 @@ export default class App extends React.Component {
           showsHorizontalScrollIndicator={false} 
           renderItem={({item}) => this.renderList(item)}
         />
-        </View>
+      </View>
+
+      <View style={{marginVertical: 48, top: 30}}>
+        <TouchableOpacity style={styles.addList} onPress={() => this.toggleAddTodoModal()}>
+          <AntDesign name="plus" size={16} color={colors.blue} />
+        </TouchableOpacity>
+
+        <Text style={styles.add}>Adicionar Lista</Text>
+      </View>
     </View>
   );
   }
@@ -78,19 +76,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   divider: {
     backgroundColor: colors.lightBlue,
     height: 1,
     flex: 1,
     alignSelf: "center"
-  },
-  title: {
-    fontSize: 42,
-    fontWeight: "700",
-    color: colors.black,
-    paddingHorizontal: 64
   },
   addList: {
     borderWidth: 2,
