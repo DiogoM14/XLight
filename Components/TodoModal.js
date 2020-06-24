@@ -5,42 +5,51 @@ import colors from "../Colors";
 
 export default class TodoModal extends React.Component {
   state = {
-    name: this.props.list.name,
-    color: this.props.list.color,
-    todos: this.props.list.todos
+    newTodo: ""
   }
 
-  renderTodo = todo => {
+  toggleTodoCompleted = index => {
+    let list = this.props.list
+    list.todos[index].completed = !list.todos[index].completed
+
+    this.props.updateList(list);
+  };
+
+  renderTodo = (todo, index) => {
     return(
-      <View style={styles.todoContainer}>
-        <TouchableOpacity>
-          <Ionicons 
-            name={todo.completed ? "ios-square" : "ios-square-outline"} 
-            size={24} 
-            color={colors.gray} 
-            style={{width: 32}} 
-          />
+      <KeyboardAvoidingView style={{flex: 1}} behavior="padding">
+        <SafeAreaView style={styles.todoContainer}>
+          <TouchableOpacity onPress={() => this.toggleTodoCompleted(index)}>
+            <Ionicons 
+              name={todo.completed ? "ios-square" : "ios-square-outline"} 
+              size={24} 
+              color={colors.gray} 
+              style={{width: 32}} 
+            />
 
-        </TouchableOpacity>
+          </TouchableOpacity>
 
-        <Text 
-          style={[
-            styles.todo, 
-            { 
-              textDecorationLine: todo.completed ? 'line-through' : 'none', 
-              color: todo.completed ? colors.gray : colors.black
-            }
-          ]}
-        >
-          {todo.title}
-        </Text>
-      </View>
+          <Text 
+            style={[
+              styles.todo, 
+              { 
+                textDecorationLine: todo.completed ? 'line-through' : 'none', 
+                color: todo.completed ? colors.gray : colors.black
+              }
+            ]}
+          >
+            {todo.title}
+          </Text>
+        </SafeAreaView>
+      </KeyboardAvoidingView>
     )
   }
 
   render() {
-    const taskCount = this.state.todos.length
-    const completedCount = this.state.todos.filter(todo => todo.completed).length
+    const list = this.props.list
+
+    const taskCount = list.todos.length
+    const completedCount = list.todos.filter(todo => todo.completed).length
     return (
       <SafeAreaView style={styles.container}>
         <TouchableOpacity 
@@ -50,9 +59,9 @@ export default class TodoModal extends React.Component {
           <AntDesign name="close" size={24} color={colors.black} />
         </TouchableOpacity>
 
-        <View style={[styles.section, styles.header, {borderBottomColor: this.state.color}]}>
+        <View style={[styles.section, styles.header, {borderBottomColor: list.color}]}>
           <View>
-            <Text style={styles.title}>{this.state.name}</Text>
+            <Text style={styles.title}>{list.name}</Text>
             <Text style={styles.taskCount}>
               {completedCount} of {taskCount} tasks
             </Text>
@@ -61,20 +70,20 @@ export default class TodoModal extends React.Component {
 
         <View style={[styles.section, {flex: 3}]}>
           <FlatList 
-            data={this.state.todos} 
-            renderItem={({item}) => this.renderTodo(item)} 
+            data={list.todos} 
+            renderItem={({item, index}) => this.renderTodo(item, index)} 
             keyExtractor={item => item.title} 
             contentContainerStyle={{paddingHorizontal: 32, paddingVertical: 64}}
             showsVerticalScrollIndicator={false}
           />
         </View>
 
-        <KeyboardAvoidingView style={[styles.section, styles.footer]} behavior="padding">
-          <TextInput style={[styles.input, {borderColor: this.state.color}]} />
-          <TouchableOpacity style={[styles.addTodo, {backgroundColor: this.state.color}]} >
+        <View style={[styles.section, styles.footer]}>
+          <TextInput style={[styles.input, {borderColor: list.color}]} />
+          <TouchableOpacity style={[styles.addTodo, {backgroundColor: list.color}]} >
             <AntDesign name="plus" size={16} color={colors.white} />
           </TouchableOpacity>
-        </KeyboardAvoidingView>
+        </View>
       </SafeAreaView>
     );
   }
