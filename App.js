@@ -1,15 +1,38 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, FlatList, Modal, Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, FlatList, Modal, Image, ActivityIndicator } from 'react-native';
 import {AntDesign} from '@expo/vector-icons';
 import colors from './Colors';
-import tempData from './tempData';
 import TodoList from './Components/TodoList';
 import AddListModal from './Components/AddListModal';
+import Fire from './Fire';
 
 export default class App extends React.Component {
   state= {
     addTodoVisible: false,
-    lists: tempData
+    lists: [],
+    user : {},
+    loading: true
+  }
+
+  componentDidMount() {
+    console.ignoredYellowBox = ['Setting a timer'];
+    firebase = new Fire((error, user) => {
+      if (error) {
+        return alert("Oops, algum erro aconteceu!")
+      }
+
+      firebase.getLists(lists => {
+        this.setState({lists, user}, () => {
+          this.setState({loading: false});
+        });
+      });
+
+      this.setState({user});
+    });
+  }
+
+  componentWillUnmount() {
+    firebase.detach();
   }
 
   toggleAddTodoModal() {
@@ -21,18 +44,25 @@ export default class App extends React.Component {
   };
 
   addList = list => {
-    this.setState({lists: [...this.state.lists, {...list, id: this.state.lists.length + 1, todos: [] }]});
+    firebase.addList({
+      name: list.name,
+      color: list.color,
+      todos: []
+    })
   };
 
   updateList = list => {
-    this.setState({
-      lists: this.state.lists.map(item => {
-        return item.id === list.id ? list : item;
-      })
-    })
+    firebase.updateList(list)
   }
 
   render() {
+    if (this.state.loading) {
+      return(
+        <View style={styles.container}>
+          <ActivityIndicator size="large" color={colors.blue} />
+        </View>
+      )
+    }
   return (
     <View style={styles.container}>
       <Modal 
@@ -43,6 +73,9 @@ export default class App extends React.Component {
 
         <AddListModal closeModal={() => this.toggleAddTodoModal()} addList={this.addList} />
       </Modal>
+      <View>
+        
+      </View>
       <View style={{flexDirection: "row"}}>
         <View style={styles.divider} />
           <Image source={require('./assets/logo.png')} style={{width: 200, height: 150}} />
@@ -52,7 +85,7 @@ export default class App extends React.Component {
       <View style={{height: 275, paddingLeft: 32}}>
         <FlatList 
           data={this.state.lists} 
-          keyExtractor={item => item.name} 
+          keyExtractor={item => item.id.toString()} 
           horizontal={true} 
           showsHorizontalScrollIndicator={false} 
           renderItem={({item}) => this.renderList(item)}
