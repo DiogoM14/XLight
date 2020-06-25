@@ -18,11 +18,15 @@ export default class TodoModal extends React.Component {
 
   addTodo = () => {
     let list = this.props.list;
-    list.todos.push({title: this.state.newTodo, completed: false});
 
-    this.props.updateList(list);
+    if (!list.todos.some(todo => todo.title === this.state.newTodo)) {
+      list.todos.push({title: this.state.newTodo, completed: false});
+
+      this.props.updateList(list);
+    }
+
+
     this.setState({newTodo: ""});
-
     Keyboard.dismiss();
   };
 
@@ -112,7 +116,7 @@ export default class TodoModal extends React.Component {
           <FlatList 
             data={list.todos} 
             renderItem={({item, index}) => this.renderTodo(item, index)} 
-            keyExtractor={(_, index) => index.toString()} 
+            keyExtractor={item => item.title} 
             showsVerticalScrollIndicator={false}
           />
         </View>
