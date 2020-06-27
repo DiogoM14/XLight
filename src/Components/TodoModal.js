@@ -1,7 +1,7 @@
 import React from "react";
 import {View, Text, StyleSheet, SafeAreaView, TouchableOpacity, FlatList, TextInput, Keyboard, Animated, KeyboardAvoidingView} from "react-native";
 import {AntDesign, Ionicons} from '@expo/vector-icons';
-import colors from "../src/Colors";
+import colors from "../Colors";
 import {Swipeable} from "react-native-gesture-handler";
 
 export default class TodoModal extends React.Component {

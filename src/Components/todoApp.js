@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, FlatList, Modal, Image, ActivityIndicator } from 'react-native';
 import {AntDesign} from '@expo/vector-icons';
-import colors from  '../src/Colors';
+import colors from  '../Colors';
 import TodoList from './TodoList';
 import AddListModal from './AddListModal';
-import Fire from '../src/database/Fire';
+import Fire from '../database/Fire';
 
 
 export default class todoApp extends React.Component {
@@ -79,7 +79,7 @@ export default class todoApp extends React.Component {
       </View>
       <View style={{flexDirection: "row"}}>
         <View style={styles.divider} />
-          <Image source={require('../assets/logo.png')} style={{width: 200, height: 150}} />
+          <Image source={require('../../assets/logo.png')} style={{width: 200, height: 150}} />
         <View style={styles.divider} />
       </View>
 
