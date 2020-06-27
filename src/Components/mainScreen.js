@@ -57,15 +57,19 @@ export default function mainScreen({navigation}) {
             return(
               <Mode key={index}>
                 <TouchableOpacity>
-                <ModeImage source={states.image} />
+                  <ModeImage source={states.image} />
                 </TouchableOpacity>
                 <ModeInfo>
-                <Text dark heavy>{states.name}</Text>
+                  <Text dark heavy>{states.name}</Text>
                 </ModeInfo>
-
               </Mode>
             ); 
           })}
+          <OffButton>
+            <TurnOff>
+              <Text>Desligar</Text>
+            </TurnOff>
+          </OffButton>
         </Modes>
       </MainContainer>
     </Container>
@@ -103,7 +107,6 @@ const Text = styled.Text`
 
 const Background = styled.ImageBackground`
   width: 100%;
-
 `;
 
 const MenuBar = styled.View`
@@ -139,7 +142,6 @@ const Button = styled.TouchableOpacity`
 
 const MainContainer = styled.ScrollView`
   margin-top: -20px;
-  margin-bottom: 10px;
   padding: 10px 23px 0 23px;
   /* padding: 32px; */
   background-color: #fff;
@@ -165,4 +167,18 @@ const ModeImage = styled.Image`
 const ModeInfo = styled.View`
   flex: 1;
   margin-left: 12px;
+`;
+
+const OffButton = styled.View`
+  padding-top: 20px;
+  align-items: center;
+`;
+
+const TurnOff = styled.TouchableOpacity`
+  width: 80%;
+  height: 60px;
+  background-color: rgba(192, 57, 43,1.0);
+  border-radius: 4px;
+  align-items: center;  
+  justify-content: center;
 `;
