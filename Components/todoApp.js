@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, FlatList, Modal, Image, ActivityIndicator } from 'react-native';
 import {AntDesign} from '@expo/vector-icons';
-import colors from '../Colors';
+import colors from  '../src/Colors';
 import TodoList from './TodoList';
 import AddListModal from './AddListModal';
-import Fire from '../Fire';
+import Fire from '../src/database/Fire';
 
 
 export default class todoApp extends React.Component {
