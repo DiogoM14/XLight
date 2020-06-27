@@ -1,8 +1,8 @@
 import React from "react";
-import {View, Text, StyleSheet, SafeAreaView, TouchableOpacity, FlatList, TextInput, Keyboard, Animated} from "react-native";
+import {View, Text, StyleSheet, SafeAreaView, TouchableOpacity, FlatList, TextInput, Keyboard, Animated, KeyboardAvoidingView} from "react-native";
 import {AntDesign, Ionicons} from '@expo/vector-icons';
 import colors from "../Colors";
-import {Swipeable} from 'react-native-gesture-handler';
+import {Swipeable} from "react-native-gesture-handler";
 
 export default class TodoModal extends React.Component {
   state = {
@@ -39,7 +39,7 @@ export default class TodoModal extends React.Component {
 
   renderTodo = (todo, index) => {
     return(
-      <Swipeable renderRightActions={(_, dragX) => this.rightActions(dragX, index)} >
+      <Swipeable renderRightActions ={(_, dragX) => this.rightActions(dragX, index)} >
         <View style={styles.todoContainer}>
           <TouchableOpacity onPress={() => this.toggleTodoCompleted(index)}>
             <Ionicons 
@@ -92,9 +92,11 @@ export default class TodoModal extends React.Component {
   render() {
     const list = this.props.list
 
-    const taskCount = list.todos.length
-    const completedCount = list.todos.filter(todo => todo.completed).length
+    const taskCount = list.todos.length  
+    const completedCount = list.todos.filter(todo => todo.completed).length;
+
     return (
+      <KeyboardAvoidingView style={{flex: 1}} behavior="padding">
       <SafeAreaView style={styles.container} >
         <TouchableOpacity 
           style={{position: "absolute", top: 64, right: 32, zIndex: 10}} 
@@ -128,6 +130,7 @@ export default class TodoModal extends React.Component {
           </TouchableOpacity>
         </View>
       </SafeAreaView>
+      </KeyboardAvoidingView>
     );
   }
 }
