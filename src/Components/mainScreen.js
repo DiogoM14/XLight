@@ -1,11 +1,13 @@
 import React from 'react';
 import {SafeAreaView, StatusBar, TouchableOpacity} from 'react-native';
 import styled from 'styled-components';
-import colors from '../Colors';
 import {Feather} from '@expo/vector-icons';
+
+import Time from './Time';
  
 
 export default function mainScreen({navigation}) {
+  
 
   const states = [
     {
@@ -17,10 +19,10 @@ export default function mainScreen({navigation}) {
       image: require("../../assets/normal.jpg")
     },
     {
-      name: 'Modo Alto',
+      name: 'Modo Potência',
       image: require("../../assets/high.jpg")
     }
-  ]
+  ]  
 
   return (
     <Container>
@@ -39,6 +41,9 @@ export default function mainScreen({navigation}) {
               <Feather name="settings" size={23} color="#fff" />
             </TouchableOpacity>
           </MenuBar>
+          <ClockContainer>
+            <Time />
+          </ClockContainer>
           <MainMsg>
             <Text title bold>Bem Vindo de Volta!</Text>
             <Divider />
@@ -120,9 +125,16 @@ const Back = styled.View`
   align-items: center;
 `;
 
+const ClockContainer = styled.View`
+  background-color: transparent;
+  width: 100%;
+  height: 200px;
+  align-items: center;
+`;
+
 const MainMsg = styled.View`
   padding: 0 32px;
-  margin: 200px 0 32px 0;
+  margin: 20px 0 32px 0;
 `;
 
 const Divider = styled.View`
