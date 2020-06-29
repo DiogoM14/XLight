@@ -7,7 +7,6 @@ const Tab = createBottomTabNavigator();
 
 import TodoApp from './Components/todoApp';
 import MainScreen from './Components/mainScreen';
-import Weather from './services/Weather';
 
 export default function Routes() {
   return (
@@ -24,16 +23,6 @@ export default function Routes() {
       <Tab.Screen 
         name="A Fazer" 
         component={TodoApp} 
-        options={{
-          tabBarIcon: ({color}) => (
-            <AntDesign name="checksquareo" color={color} size={24} />
-          )
-        }}
-      />
-
-      <Tab.Screen 
-        name="Weather" 
-        component={Weather} 
         options={{
           tabBarIcon: ({color}) => (
             <AntDesign name="checksquareo" color={color} size={24} />
