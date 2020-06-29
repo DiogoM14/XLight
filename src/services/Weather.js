@@ -1,19 +1,21 @@
 import React from 'react';
 import {View, FlatList, Text} from 'react-native';
 
-export default class Time extends React.Component {
+export default class Weather extends React.Component {
 
   state = {
     data: []
   }
 
   getWeather= () => {
-    fetch('http://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1030300.json')
+    fetch('http://api.openweathermap.org/data/2.5/weather?q=porto&appid=c6ec03cad8423bfa39130906126ceada')
       .then( res => res.json())
       .then(res => {
         this.setState({
-          data: res.data ||[]
+          data: res.weather ||[]
         })
+        
+        console.log(res.weather)
       })
   }
 
@@ -29,11 +31,10 @@ export default class Time extends React.Component {
           data={this.state.data}
           renderItem={({item}) => (
             <View>
-              <Text>{item.tMax}</Text>
-              <Text>{item.tMin}</Text>
+              <Text style={{color: 'white', paddingTop: 5}}>{item.description}</Text>        
             </View>
           )}
-          keyExtractor={item => item.latitude}
+          keyExtractor={item => item.id}
         />
       </View>
     );

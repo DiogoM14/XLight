@@ -1,9 +1,10 @@
 import React from 'react';
-import {SafeAreaView, StatusBar, TouchableOpacity} from 'react-native';
+import {SafeAreaView, StatusBar, TouchableOpacity, } from 'react-native';
 import styled from 'styled-components';
 import {Feather} from '@expo/vector-icons';
 
 import Time from './Time';
+import Weather from '../services/Weather';
  
 
 export default function mainScreen({navigation}) {
@@ -48,7 +49,6 @@ export default function mainScreen({navigation}) {
             <Text title bold>Bem Vindo de Volta!</Text>
             <Divider />
             <Text heavy>"Nada é dificil se for dividido em pequenas partes."</Text>
-            
           </MainMsg>
           <Button>
             <Text>Ver Mais</Text>
