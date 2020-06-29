@@ -35,7 +35,7 @@ export default function mainScreen({navigation}) {
               <TouchableOpacity>
                 <Feather name="user" size={23} color="#fff" />
               </TouchableOpacity>
-                <Text style={{marginLeft: 10}}>XLight</Text>
+                <Text style={{marginLeft: 10}}>Diogo</Text>
             </Back>
             <TouchableOpacity>
               <Feather name="settings" size={23} color="#fff" />
@@ -47,8 +47,8 @@ export default function mainScreen({navigation}) {
           <MainMsg>
             <Text title bold>Bem Vindo de Volta!</Text>
             <Divider />
-            <Text heavy>Frase API</Text>
-            <Text>Forcast API</Text>
+            <Text heavy>"Nada é dificil se for dividido em pequenas partes."</Text>
+            
           </MainMsg>
           <Button>
             <Text>Ver Mais</Text>

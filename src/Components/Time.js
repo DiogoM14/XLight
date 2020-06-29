@@ -11,9 +11,9 @@ export default class Time extends React.Component {
     let min = new Date().getMinutes(); 
     let hoursMin = (hours*1440)/24;
     let hour = hoursMin+min;
-    let time = (hour*100)/1400;
+    let time = (hour*100)/1440;
     time = Math.round(time) 
-
+    
     this.setState({time});
     
   }

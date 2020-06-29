@@ -96,7 +96,7 @@ export default class todoApp extends React.Component {
 
       <View style={{marginVertical: 48, top: 30}}>
         <TouchableOpacity style={styles.addList} onPress={() => this.toggleAddTodoModal()}>
-          <AntDesign name="plus" size={16} color={colors.blue} />
+          <AntDesign name="plus" size={16} color={colors.gray} />
         </TouchableOpacity>
 
         <Text style={styles.add}>Adicionar Lista</Text>
@@ -114,21 +114,21 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   divider: {
-    backgroundColor: colors.lightBlue,
+    backgroundColor: colors.lightGray,
     height: 1,
     flex: 1,
     alignSelf: "center"
   },
   addList: {
     borderWidth: 2,
-    borderColor: colors.lightBlue,
+    borderColor: colors.black,
     borderRadius: 4,
     padding: 16,
     alignItems: "center",
     justifyContent: "center"
   },
   add: {
-    color: colors.blue,
+    color: colors.black,
     fontWeight: "600",
     fontSize: 14,
     marginTop: 8 
