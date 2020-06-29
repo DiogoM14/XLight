@@ -4,8 +4,7 @@
     "slug": "XLight",
     "platforms": [
       "ios",
-      "android",
-      "web"
+      "android"
     ],
     "version": "1.0.0",
     "orientation": "portrait",
@@ -22,11 +21,17 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.yourcoxLightCorporationmpany.XLight",
+      "buildNumber": "1.0.0"
     },
     "androidStatusBar": {
       "backgroundColor": "#fff",
       "translucent": false
+    },
+    "android": {
+      "package": "com.xLightCorporation.XLight",
+      "versionCode": 1
     }
   }
 }
