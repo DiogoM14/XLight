@@ -49,6 +49,9 @@ export default function mainScreen({navigation}) {
             <Text title bold>Bem Vindo de Volta!</Text>
             <Divider />
             <Text heavy>"Nada é dificil se for dividido em pequenas partes."</Text>
+            <WeatherContainer>
+              <Weather />
+            </WeatherContainer>
           </MainMsg>
           <Button>
             <Text>Ver Mais</Text>
@@ -142,6 +145,9 @@ const Divider = styled.View`
   border-bottom-width: 2px;
   width: 150px;
   margin: 8px 0;
+`;
+const WeatherContainer = styled.View`
+
 `;
 
 const Button = styled.TouchableOpacity`
