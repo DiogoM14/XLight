@@ -31,6 +31,7 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias
 - [React Native](https://reactnative.dev/)
 - [JavaScript](https://developer.mozilla.org/pt-PT/docs/Web/JavaScript)
 - [Expo](https://https://expo.io/)
+- [Firebase](https://firebase.google.com/?hl=pt-br&gclid=Cj0KCQjwoub3BRC6ARIsABGhnyYodeGCzXV-OwfHqMgRqMCOVNQpllfgOf91pwp6ZuzyUWkQmLpAcQIaAkSkEALw_wcB)
 
 ---
 
